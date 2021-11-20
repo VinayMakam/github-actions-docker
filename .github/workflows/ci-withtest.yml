@@ -29,6 +29,8 @@ jobs:
       run:  docker build -t lvthillo/python-flask-docker .
     - name: Docker Run
       run:  docker run --name my-container -d -p 8080:8080 lvthillo/python-flask-docker
+    - name: Docker Inspect
+      run: docker inspect -f '{{ .Config.Hostname }}' my-container
     - name: Test with pytest
       run: |
         pip install pytest
