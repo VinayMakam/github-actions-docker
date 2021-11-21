@@ -29,10 +29,15 @@ jobs:
       run:  docker build -t lvthillo/python-flask-docker .
     - name: Docker Run
       run:  docker run --name my-container -d -p 8080:8080 lvthillo/python-flask-docker
+    - name: Create Shared Dir
+      run: mkdir -p /shared_dir
     - name: Docker Inspect
       run: |
-        docker inspect -f '{{ .Config.Hostname }}' my-container
-        docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container
+        docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container > /shared_dir/ipadress.txt
+    - uses: actions/upload-artifact@master
+      with:
+        name: my-artifact
+        path: /shared_dir
     - name: Test with pytest
       run: |
         pip install pytest
@@ -44,8 +49,13 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout v2
-      uses: actions/checkout@v2
+    - uses: actions/checkout@master
+    - uses: actions/download-artifact@master
+      with:
+        name: my-artifact
+        path: /shared_dir
+    
+    - run: cat /shared_dir/ipadress.txt
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
