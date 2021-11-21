@@ -33,7 +33,7 @@ jobs:
       run: sudo mkdir -p /shared_dir
     - name: Docker Inspect
       run: |
-        docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container > /shared_dir/ipadress.txt
+        sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container > /shared_dir/ipadress.txt
     - uses: actions/upload-artifact@master
       with:
         name: my-artifact
