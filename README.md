@@ -1,5 +1,5 @@
 # python-flask-docker
-Basic Python Flask app in Docker which prints "Hello World" inside the content of the page.
+Basic Python Flask app in a Docker Container which prints "Hello World" inside the content of the page.
 This project using GitHub Action Workflow for CI process with tests.
 For trigger this workflow, just push something to the master.
 The workflow contains two jobs - Build & Test.
