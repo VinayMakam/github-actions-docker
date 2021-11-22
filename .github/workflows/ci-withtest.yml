@@ -13,7 +13,7 @@ jobs:
     name: Build
     runs-on: ubuntu-latest
     outputs:
-      output1: ${{ steps.step1.outputs.test }}
+      output1: ${{ steps.save.outputs.docker-ip-address }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
     - name: Checkout v2
@@ -30,24 +30,9 @@ jobs:
       run:  docker build -t lvthillo/python-flask-docker .
     - name: Docker Run
       run:  docker run --name my-container -d -p 8080:8080 lvthillo/python-flask-docker
-    #- name: Create Shared Dir
-    #  run: |
-    #    sudo mkdir -p ~/shared_dir
-    #    sudo touch ~/shared_dir/ipadress.txt
-    #    sudo chmod +wr ~/shared_dir/ipadress.txt
-    - id: step1
-      run: echo "::set-output name=test::$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container)\n"
-    #- name: Docker Inspect
-    #  run: sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container | tee ~/shared_dir/ipadress.txt
-    #- uses: actions/upload-artifact@master
-    #  with:
-    #    name: my-artifact
-    #    path: /shared_dir
-    - name: Test with pytest
-      run: |
-        pip install pytest
-        export PYTHONPATH=src
-        pytest
+    - name: Save Docker IP Address
+      id: save
+      run: echo "::set-output name=docker-ip-address::$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container)"
 
   test:
     name: Test
@@ -55,13 +40,8 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    #- uses: actions/download-artifact@master
-    #  with:
-    #    name: my-artifact
-    #    path: /shared_dir
     - name: Print output
-      run:  echo ${{needs.build.outputs.output1}}    
-    #- run: cat /shared_dir/ipadress.txt
+      run:  echo ${{needs.build.outputs.output1}}
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
