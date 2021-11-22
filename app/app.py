@@ -5,11 +5,7 @@ app = Flask(__name__)
 
 @app.route("/")
 def index():
-    return "Hello, world!"
-
-
-def print_ip():
-    return socket.gethostbyname(socket.gethostname())
+    return "Hello world!"
 
 
 if __name__ == "__main__":
