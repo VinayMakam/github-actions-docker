@@ -50,6 +50,9 @@ jobs:
       run: |
         python -m pip install --upgrade pip
         pip install -r requirements.txt
+    - name: Test IP Address
+      if: needs.build.outputs.output1 == '172.17.0.2'
+      run:  echo "IP Address is ok!"
     - name: Test with pytest
       run: |
         pip install pytest
