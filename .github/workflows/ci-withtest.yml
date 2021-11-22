@@ -36,7 +36,7 @@ jobs:
     #    sudo touch ~/shared_dir/ipadress.txt
     #    sudo chmod +wr ~/shared_dir/ipadress.txt
     - id: step1
-      run: echo "::set-output name=test::$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container")
+      run: echo "::set-output name=test::$(docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container)\n"
     #- name: Docker Inspect
     #  run: sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container | tee ~/shared_dir/ipadress.txt
     #- uses: actions/upload-artifact@master
