@@ -16,6 +16,6 @@ Included unit test which done by using Pytest module.
 We are testing the content of the page(should be "Hello World!"), and IP address of the build container.
 
 ![image](https://user-images.githubusercontent.com/55482825/142743557-5747e7df-7204-47ee-942a-d70b61217ffb.png)
-![image](https://user-images.githubusercontent.com/55482825/142743567-574f5a14-822d-4b12-8aa6-e8a7b2550cf4.png)
-![image](https://user-images.githubusercontent.com/55482825/142743569-609d6319-c593-4971-aacb-be46479cb240.png)
+![image](https://user-images.githubusercontent.com/55482825/142924321-f8476030-7aad-498e-8296-b2d70e64b366.png)
+![image](https://user-images.githubusercontent.com/55482825/142924374-c695ab0b-4534-4ec5-a971-d5b3fbca1112.png)
 
