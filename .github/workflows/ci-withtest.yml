@@ -30,7 +30,11 @@ jobs:
     - name: Docker Run
       run:  docker run --name my-container -d -p 8080:8080 lvthillo/python-flask-docker
     - name: Create Shared Dir
-      run: sudo mkdir -p ~/shared_dir
+      run: |
+        sudo mkdir -p ~/shared_dir
+        sudo cd ~/shared_dir
+        sudo touch ipadress.txt
+        sudo chmod +wr ipadress.txt
     - name: Docker Inspect
       run: sudo docker inspect -f '{{range .NetworkSettings.Networks}}{{.IPAddress}}{{end}}' my-container | tee ~/shared_dir/ipadress.txt
     - uses: actions/upload-artifact@master
