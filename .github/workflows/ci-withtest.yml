@@ -16,7 +16,7 @@ jobs:
       output1: ${{ steps.save.outputs.docker-ip-address }}
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
-    - name: Checkout v2
+    - name: Checkout
       uses: actions/checkout@v2
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
@@ -39,9 +39,8 @@ jobs:
     needs: build
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@master
-    - name: Print output
-      run:  echo ${{needs.build.outputs.output1}}
+    - name: Checkout
+      uses: actions/checkout@master
     - name: Set up Python 3.8
       uses: actions/setup-python@v2
       with:
