@@ -1,8 +1,10 @@
 # python-flask-docker
+
 Basic Python Flask app, build by a Docker file.
 This app prints "Hello World" inside the content of the page.
 The project using GitHub Action Workflow for CI pipeline with tests.
 For trigger this workflow, just push something to the master(ask me for an admin permission or create pull request).
+
 The workflow contains two jobs - Build & Test.
 
 ## Build job:
