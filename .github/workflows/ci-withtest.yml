@@ -55,10 +55,10 @@ jobs:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@master
-    - uses: actions/download-artifact@master
-      with:
-        name: my-artifact
-        path: /shared_dir
+    #- uses: actions/download-artifact@master
+    #  with:
+    #    name: my-artifact
+    #    path: /shared_dir
     - name: Print output
       run:  echo ${{needs.build.outputs.output1}}    
     - run: cat /shared_dir/ipadress.txt
